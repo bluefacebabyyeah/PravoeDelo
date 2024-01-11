@@ -29,12 +29,13 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
         binding.bSumbit.setOnClickListener{
             if (binding.et.text.toString() != viewModel.user.value!!.code) {
+                Toast.makeText(requireContext(), "Неверный код", Toast.LENGTH_SHORT).show()
                 binding.bRegenerate.isVisible = true
             }
             else {
                 viewModel.getToken()
                 binding.tvToken.isVisible = true
-                Toast.makeText(requireContext(), viewModel.user.value!!.token, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Здравствуйте, ${viewModel.user.value!!.number.toString()}, Ваш токен: ${viewModel.user.value!!.token}", Toast.LENGTH_LONG).show()
             }
         }
 
