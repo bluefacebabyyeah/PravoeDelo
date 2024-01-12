@@ -26,7 +26,7 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
         super.onViewCreated(view, savedInstanceState)
         binding.bSubmit.setOnClickListener{
             viewModel.getCode(binding.et.text.toString())
-            viewModel.user  .value?.let { it1 -> toUserPage(it1) }
+            viewModel.user.value?.let { it1 -> toUserPage(it1) }
         }
         viewModel.error.observe(viewLifecycleOwner){
             if (it!=null){

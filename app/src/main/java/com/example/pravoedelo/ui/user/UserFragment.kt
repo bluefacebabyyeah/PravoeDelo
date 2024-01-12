@@ -34,11 +34,16 @@ class UserFragment : Fragment(R.layout.fragment_user) {
             }
             else {
                 viewModel.getToken()
-                binding.tvToken.isVisible = true
-                Toast.makeText(requireContext(), "Здравствуйте, ${viewModel.user.value!!.number.toString()}, Ваш токен: ${viewModel.user.value!!.token}", Toast.LENGTH_LONG).show()
             }
         }
 
+        viewModel.user.observe(viewLifecycleOwner){
+            if (it.token != "no token yet"){
+                Toast.makeText(requireContext(), viewModel.user.value!!.token, Toast.LENGTH_LONG).show()
+                binding.tvToken.text = "Здравствуйте, ${viewModel.user.value!!.number.toString()}, Ваш токен: ${viewModel.user.value!!.token}"
+                binding.tvToken.isVisible = true
+            }
+        }
         binding.bRegenerate.setOnClickListener{
             viewModel.regenerateCode()
         }
