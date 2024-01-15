@@ -22,13 +22,12 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.user.value = args.User
-        Toast.makeText(requireContext(), viewModel.user.value!!.number, Toast.LENGTH_LONG).show()
+
         Toast.makeText(requireContext(), viewModel.user.value!!.code, Toast.LENGTH_LONG).show()
-        Toast.makeText(requireContext(), viewModel.user.value!!.token, Toast.LENGTH_LONG).show()
         binding.tvNumber.text = viewModel.user.value!!.number
 
         binding.bSumbit.setOnClickListener{
-            if (binding.et.text.toString() != viewModel.user.value!!.code) {
+            if (binding.etCode.text.toString() != viewModel.user.value!!.code) {
                 Toast.makeText(requireContext(), "Неверный код", Toast.LENGTH_SHORT).show()
                 binding.bRegenerate.isVisible = true
             }
@@ -37,16 +36,22 @@ class UserFragment : Fragment(R.layout.fragment_user) {
             }
         }
 
-        viewModel.user.observe(viewLifecycleOwner){
-            if (it.token != "no token yet"){
-                Toast.makeText(requireContext(), viewModel.user.value!!.token, Toast.LENGTH_LONG).show()
-                binding.tvToken.text = "Здравствуйте, ${viewModel.user.value!!.number.toString()}, Ваш токен: ${viewModel.user.value!!.token}"
+        viewModel.newUserToken.observe(viewLifecycleOwner){
+            if (it != "no token yet"){
+                Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                binding.tvToken.text = "Здравствуйте, ${viewModel.user.value!!.number}, Ваш токен: ${it}"
                 binding.tvToken.isVisible = true
             }
+            else
+                Toast.makeText(requireContext(), "Aboba", Toast.LENGTH_LONG)
         }
+
         binding.bRegenerate.setOnClickListener{
             viewModel.regenerateCode()
         }
 
+        viewModel.error.observe(viewLifecycleOwner){
+            Toast.makeText(requireContext(),  viewModel.error.value.toString(), Toast.LENGTH_LONG).show()
+        }
     }
 }

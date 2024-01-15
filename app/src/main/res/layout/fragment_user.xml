@@ -22,10 +22,10 @@
         app:layout_constraintTop_toBottomOf="@id/iv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:hint="номер телефона"
+        android:hint="Номер телефона"
         android:gravity="center"/>
     <EditText
-        android:id="@+id/et"
+        android:id="@+id/etCode"
         android:layout_width="250dp"
         android:layout_height="40dp"
         app:layout_constraintTop_toBottomOf="@id/tvNumber"
@@ -37,17 +37,19 @@
         android:id="@+id/bSumbit"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/et"
+        app:layout_constraintTop_toBottomOf="@id/etCode"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#ff3500"
         android:text="Подтвердить"/>
     <Button
+        tools:visibility="visible"
         android:id="@+id/bRegenerate"
         android:visibility="invisible"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Запросить новый код"
+        android:backgroundTint="#5b5b5b"
         app:layout_constraintTop_toBottomOf="@id/bSumbit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

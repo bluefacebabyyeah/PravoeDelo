@@ -30,6 +30,6 @@
         app:layout_constraintTop_toBottomOf="@id/et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#ff3500"
         android:text="Подтвердить"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

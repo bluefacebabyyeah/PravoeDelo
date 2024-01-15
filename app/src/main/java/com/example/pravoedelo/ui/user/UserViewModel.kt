@@ -1,5 +1,6 @@
 package com.example.pravoedelo.ui.user
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,16 +18,15 @@ class UserViewModel @Inject constructor(
 ): ViewModel() {
     val error = MutableLiveData<String?>()
     val user = MutableLiveData<User>()
-
-    fun getToken(){
+    val newUserToken = MutableLiveData<String>()
+    fun getToken() {
         viewModelScope.launch {
             try {
-                user.value = getTokenUseCase.getToken(user.value!!)
+                newUserToken.value = getTokenUseCase.getToken(user.value!!).token
             } catch (e: Exception) {
                 error.value = e.message
                 error.value = null
             }
-
         }
     }
 
